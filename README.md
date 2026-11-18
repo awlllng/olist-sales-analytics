@@ -15,13 +15,13 @@ The same dashboard was built in two tools.
 
 **Tableau Public**
 
-![Tableau dashboard](images/Olist_E-commerce_Sales_Overview,2017.png)
+![Tableau dashboard](images/tableau_dashboard.png)
 
 [Open the interactive dashboard on Tableau Public](https://public.tableau.com/app/profile/maksym.tertyshnyi/viz/OlistE-commerce_17944926696140/OlistE-commerceSalesOverview2017)
 
 **Power BI**
 
-![Power BI dashboard](images/dashboard_powerbi.png)
+![Power BI dashboard](images/dashboard_powerbi.jpg)
 
 The Power BI file is in [`powerbi/olist_dashboard.pbix`](powerbi/olist_dashboard.pbix).
 
