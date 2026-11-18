@@ -1,6 +1,6 @@
 # Olist E-commerce: Sales Overview, 2017
 
-A portfolio project in SQL (BigQuery), Google Sheets and Tableau Public, based on the public Brazilian e-commerce dataset from Olist.
+A portfolio project in SQL (BigQuery), Google Sheets, Tableau Public and Power BI, based on the public Brazilian e-commerce dataset from Olist.
 
 ## Key findings
 
@@ -11,15 +11,19 @@ A portfolio project in SQL (BigQuery), Google Sheets and Tableau Public, based o
 
 ## Dashboard
 
-![Dashboard](images/dashboard.png)
+The same dashboard was built in two tools.
+
+**Tableau Public**
+
+![Tableau dashboard](images/Olist_E-commerce_Sales_Overview,2017.png)
 
 [Open the interactive dashboard on Tableau Public](https://public.tableau.com/app/profile/maksym.tertyshnyi/viz/OlistE-commerce_17944926696140/OlistE-commerceSalesOverview2017)
 
-## Limitations
+**Power BI**
 
-- Only one year of data (2017), so seasonality is a hypothesis.
-- Revenue only: the dataset has no cost data, so profit is not analysed.
-- The delivery analysis includes only delivered orders that have a review, and the score difference does not prove that delays cause low scores.
+![Power BI dashboard](images/dashboard_powerbi.png)
+
+The Power BI file is in [`powerbi/olist_dashboard.pbix`](powerbi/olist_dashboard.pbix).
 
 ## Business problem
 
@@ -35,6 +39,19 @@ The answers could help decide when to focus sales efforts, which categories and 
 Scope: the revenue, category and state figures cover delivered orders placed in 2017. The delivery analysis covers delivered orders from all years that have a review.
 
 *This is a portfolio project. The questions are modelled on what a sales team might ask; they are not a real client request.*
+
+## Data
+
+- Source: [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) on Kaggle, loaded into BigQuery.
+- Tables used: `orders`, `order_items`, `products`, `product_category_name_translation`, `customers`, `order_reviews`.
+- Money values are in Brazilian reals (BRL).
+
+## Tools
+
+- **BigQuery (SQL)**: all calculations (joins, aggregations, CTE-style subqueries, window function for shares).
+- **Google Sheets**: validation of results, growth rates and shares, first charts.
+- **Tableau Public** and **Power BI**: dashboards.
+- **GitHub**: queries and documentation.
 
 ## Approach
 
@@ -58,3 +75,25 @@ Scope: the revenue, category and state figures cover delivered orders placed in 
 - Reviews are linked to orders, not to products, which is enough for the delivery question.
 - Some orders have more than one review (96,353 rows for 95,824 unique orders), which duplicated orders after the join. Scores are therefore averaged per order, so each order appears once.
 - Delivered orders without a review are not part of the delivery analysis.
+
+## Limitations
+
+- Only one year of data (2017) is used for revenue, so seasonality is a hypothesis.
+- Revenue only: the dataset has no cost data, so profit is not analysed.
+- The delivery analysis includes only delivered orders that have a review, and the score difference does not prove that delays cause low scores.
+- State figures show the customer's state and count orders, not revenue.
+
+## Next steps
+
+- Check late deliveries by state to see whether delays are concentrated in particular regions.
+- Add a second year of data to test whether the November peak repeats.
+- Compare revenue and order counts per category to see whether the ranking changes.
+
+## Repository structure
+
+```
+sql/        queries 00-05 (total revenue, monthly revenue, top categories, orders by state, delivery vs review, KPIs)
+excel/      Google Sheets workbook with charts and share calculations (.xlsx)
+powerbi/    Power BI dashboard (.pbix)
+images/     dashboard screenshots and charts
+```
